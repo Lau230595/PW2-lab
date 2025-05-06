@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Extraer código de Google Meet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f5f8; 
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+    
+        h2, p {
+            color: #2d3436;
+            margin: 10px 0;
+        }
+    
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #b2bec3;
+            width: 200px;
+            margin: 8px 0;
+            background-color: #ffffff;
+            color: #2d3436;
+        }
+    
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #74b9ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 220px;
+            height: 45px;
+        }
+    
+        button:active {
+            background-color: #0984e3; 
+        }
+    
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+    
+        td {
+            border: 1px solid #dfe6e9;
+            padding: 10px;
+            width: 50px;
+            background-color: #ffffff;
+        }
+    
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #2d3436;
+        }
+    </style>    
+</head>
+<body> 
+    <h2>Extraer el codigo del meet</h2>
+    <input type="text" id="url" placeholder="Pega el link del meet aquí">
+    <button onclick="sacarCodigo()">Obtener código</button>
+    <p id="codigo"></p>
+    <script src="codigo-meet.js"></script>
+</body>
+</html>

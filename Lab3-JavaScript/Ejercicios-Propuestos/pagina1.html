@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Estilo dinámico de Texto</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f5f8;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+    
+        h2, p {
+            color: #2d3436;
+            margin: 10px 0;
+        }
+    
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #b2bec3;
+            width: 200px;
+            margin: 8px 0;
+            background-color: #ffffff;
+            color: #2d3436;
+        }
+    
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #74b9ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 220px;
+            margin: 8px 0;
+            height: 45px;
+        }
+    
+        button:active {
+            background-color: #0984e3; 
+        }
+    
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+    
+        td {
+            border: 1px solid #dfe6e9;
+            padding: 10px;
+            width: 50px;
+            background-color: #ffffff;
+        }
+    
+        #texto {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #2d3436;
+        }
+    </style>    
+</head>
+<body>
+    <h2>Cambio de tamaño y color </h2>
+    <input type="text" id="nuevoTexto" placeholder="Escribe tu palabra o frase">
+    <br>
+    <input type="number" id="cambioTamano" placeholder="Aumento o disminucion de tamaño ">
+   
+    <select id="colorTexto">
+        <option value="#2d3436">Negro Oscuro</option>
+        <option value="#d63031">Rojo</option>
+        <option value="#0984e3">Azul</option>
+        <option value="#00b894">Verde</option>
+        <option value="#e84393">Rosa</option>
+        <option value="#fdcb6e">Amarillo</option>
+    </select>
+    
+    <br>
+    <button onclick="cambiarTexto()">Cambiar Texto</button>
+    <button onclick="cambiarTamano()">Cambiar Tamaño</button>
+    <button onclick="cambiarColor()">Cambiar Color</button>
+
+    <p id="texto"></p>
+   
+    <script>
+        function cambiarTexto() {
+            let nuevo = document.getElementById("nuevoTexto").value;
+            if (nuevo.trim() !== "") {
+                document.getElementById("texto").textContent = nuevo;
+            } else {
+                alert("Por favor, escribe algo para cambiar el texto.");
+            }
+        }
+        function cambiarTamano() {
+            let texto = document.getElementById("texto");
+            let cambio = parseInt(document.getElementById("cambioTamano").value);
+            let tamanoActual = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            tamanoActual = parseFloat(tamanoActual);
+            let nuevoTamano = tamanoActual + cambio;
+            if (nuevoTamano < 5) {
+                nuevoTamano = 5;
+            }
+            texto.style.fontSize = nuevoTamano + "px";
+        }
+        function cambiarColor() {
+            let texto = document.getElementById("texto");
+            let nuevoColor = document.getElementById("colorTexto").value;
+
+            texto.style.color = nuevoColor;
+        }
+    </script>
+
+</body>
+</html>

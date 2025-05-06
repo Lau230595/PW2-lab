@@ -1,47 +1,55 @@
-google.charts.load('current', {'packages':['corechart']});
+// Cargar Google Charts
+google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(cargarDatos);
 
 function cargarDatos() {
     fetch('../data.json')
         .then(res => res.json())
-        .then(datos => {
-            let regionesObjetivo = ['Arequipa', 'Cusco', 'Piura'];
+        .then(data => {
             let fechas = [];
-            let mapaValores = {};
+            let regiones = [];
+            let valoresPorRegion = {};
 
-            for (let i = 0; i < datos.length; i++) {
-                if (regionesObjetivo.includes(datos[i].region)) {
-                    mapaValores[datos[i].region] = [];
+            // Obtener fechas desde la primera región
+            for (let i = 0; i < data.length; i++) {
+                for (let j = 0; j < data[i].confirmed.length; j++) {
+                    fechas.push(data[i].confirmed[j].date);
+                }
+                break; // solo una vez
+            }
 
-                    for (let j = 0; j < datos[i].confirmed.length; j++) {
-                        if (fechas.length < datos[i].confirmed.length) {
-                            fechas.push(datos[i].confirmed[j].date);
-                        }
-                        mapaValores[datos[i].region].push(parseInt(datos[i].confirmed[j].value));
-                    }
+            // Recolectar datos de todas las regiones
+            for (let i = 0; i < data.length; i++) {
+                let region = data[i].region;
+                regiones.push(region);
+                valoresPorRegion[region] = [];
+
+                for (let j = 0; j < data[i].confirmed.length; j++) {
+                    valoresPorRegion[region][j] = parseInt(data[i].confirmed[j].value);
                 }
             }
 
-            // Creamos encabezado
-            let dataArray = [['Fecha'].concat(regionesObjetivo)];
+            // Crear los datos para el gráfico
+            let datosGrafico = [['Fecha'].concat(regiones)];
 
-            for (let k = 0; k < fechas.length; k++) {
-                let fila = [fechas[k]];
-                for (let r = 0; r < regionesObjetivo.length; r++) {
-                    fila.push(mapaValores[regionesObjetivo[r]][k]);
+            for (let i = 0; i < fechas.length; i++) {
+                let fila = [fechas[i]];
+                for (let r of regiones) {
+                    fila.push(valoresPorRegion[r][i]);
                 }
-                dataArray.push(fila);
+                datosGrafico.push(fila);
             }
 
-            let data = google.visualization.arrayToDataTable(dataArray);
+            let dataTable = google.visualization.arrayToDataTable(datosGrafico);
 
-            let opciones = {
-                title: 'Comparación de regiones',
+            let options = {
+                title: 'Comparación de casos confirmados por región',
                 curveType: 'function',
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom' },
+                tooltip: { trigger: 'none' } 
             };
 
             let chart = new google.visualization.LineChart(document.getElementById('grafico'));
-            chart.draw(data, opciones);
+            chart.draw(dataTable, options);
         });
 }

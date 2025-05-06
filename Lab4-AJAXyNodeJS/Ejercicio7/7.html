@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 7 - Comparar regiones seleccionadas</title>
+    <!-- Cargamos Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Conectamos con nuestro script -->
+    <script src="7.js"></script>
+</head>
+<body>
+    <h2>Selecciona las regiones que deseas comparar</h2>
+
+    <p>Presiona Ctrl (Windows) o Cmd (Mac) para seleccionar varias.</p>
+
+    <select id="regionesSelect" multiple size="8">
+        <!-- Las opciones serán agregadas automáticamente -->
+    </select>
+
+    <br><br>
+    <button onclick="generarGrafico()">Comparar regiones</button>
+
+    <div id="grafico" style="width: 100%; height: 500px;"></div>
+</body>
+</html>

@@ -5,14 +5,11 @@ xhttp.onload = function () {
 
     let resultado = "<ul>";
 
-    // Recorremos cada región
     for (let i = 0; i < datos.length; i++) {
         let region = datos[i];
         let total = 0;
 
-        // Sumamos los valores de todos los días
         for (let j = 0; j < region.confirmed.length; j++) {
-            // Convertimos el valor a número entero
             total += parseInt(region.confirmed[j].value);
         }
 

@@ -1,12 +1,20 @@
 const xhttp = new XMLHttpRequest();
-xhttp.onload = function() {
-    const data = JSON.parse(this.responseText);
-    let output = "<ul>";
-    for (let region of data) {
-        output += `<li>${region.region}</li>`;
+
+xhttp.onload = function () {
+
+    const datos = JSON.parse(this.responseText);
+
+    let lista = "<ul>";
+
+    for (let i = 0; i < datos.length; i++) {
+        lista += "<li>" + datos[i].region + "</li>";
     }
-    output += "</ul>";
-    document.getElementById("output").innerHTML = output;
-}
-xhttp.open("GET", "data.json");
+
+    lista += "</ul>";
+
+    document.getElementById("resultado").innerHTML = lista;
+};
+
+xhttp.open("GET", "../data.json", true);
+
 xhttp.send();

@@ -1,32 +1,55 @@
-google.charts.load('current', { packages: ['corechart'] });
-google.charts.setOnLoadCallback(dibujarGrafico);
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(cargarDatos);
 
-function dibujarGrafico() {
+function cargarDatos() {
     fetch('../data.json')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
-            let fechas = data[0].confirmed.map(d => d.date);
-            let graficoData = [['Fecha', 'Total sin Lima y Callao']];
+            let fechas = [];
+            let regiones = [];
+            let valoresPorRegion = {};
 
-            for (let i = 0; i < fechas.length; i++) {
-                let total = 0;
-                for (let j = 0; j < data.length; j++) {
-                    let nombre = data[j].region;
-                    if (nombre !== "Lima" && nombre !== "Callao") {
-                        total += parseInt(data[j].confirmed[i].value);
+            // Identificamos fechas base (del primero que no sea Lima o Callao)
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].region !== "Lima" && data[i].region !== "Callao") {
+                    for (let j = 0; j < data[i].confirmed.length; j++) {
+                        fechas.push(data[i].confirmed[j].date);
                     }
+                    break;
                 }
-                graficoData.push([fechas[i], total]);
             }
 
-            const dataTable = google.visualization.arrayToDataTable(graficoData);
-            const opciones = {
-                title: 'Crecimiento diario sin Lima y Callao',
+            // Procesamos regiones distintas de Lima y Callao
+            for (let i = 0; i < data.length; i++) {
+                let region = data[i].region;
+                if (region !== "Lima" && region !== "Callao") {
+                    regiones.push(region);
+                    valoresPorRegion[region] = [];
+
+                    for (let j = 0; j < data[i].confirmed.length; j++) {
+                        valoresPorRegion[region][j] = parseInt(data[i].confirmed[j].value);
+                    }
+                }
+            }
+
+            // Construimos la tabla para Google Charts
+            let datosGrafico = [['Fecha'].concat(regiones)];
+            for (let i = 0; i < fechas.length; i++) {
+                let fila = [fechas[i]];
+                for (let r of regiones) {
+                    fila.push(valoresPorRegion[r][i]);
+                }
+                datosGrafico.push(fila);
+            }
+
+            let dataTable = google.visualization.arrayToDataTable(datosGrafico);
+            let options = {
+                title: 'Crecimiento por región (sin Lima y Callao)',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
 
-            const chart = new google.visualization.LineChart(document.getElementById('grafico'));
-            chart.draw(dataTable, opciones);
+            let chart = new google.visualization.LineChart(document.getElementById('grafico'));
+            chart.draw(dataTable, options);
         });
 }

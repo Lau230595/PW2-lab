@@ -7,33 +7,46 @@ function cargarDatos() {
         .then(res => res.json())
         .then(data => {
             let fechas = [];
-            let sumaPorDia = [];
+            let regiones = [];
+            let valoresPorRegion = {};
 
-            // Usamos las fechas de la primera región como referencia
-            for (let i = 0; i < data[0].confirmed.length; i++) {
-                fechas.push(data[0].confirmed[i].date);
-                sumaPorDia[i] = 0;
+            // Usamos fechas del primer registro válido
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].region !== "Lima" && data[i].region !== "Callao") {
+                    for (let j = 0; j < data[i].confirmed.length; j++) {
+                        fechas.push(data[i].confirmed[j].date);
+                    }
+                    break;
+                }
             }
 
-            // Sumamos los valores diarios, excluyendo Lima y Callao
-            for (let region of data) {
-                if (region.region !== "Lima" && region.region !== "Callao") {
-                    for (let i = 0; i < region.confirmed.length; i++) {
-                        sumaPorDia[i] += parseInt(region.confirmed[i].value);
+            // Recorremos regiones que NO sean Lima ni Callao
+            for (let i = 0; i < data.length; i++) {
+                let region = data[i].region;
+                if (region !== "Lima" && region !== "Callao") {
+                    regiones.push(region);
+                    valoresPorRegion[region] = [];
+
+                    for (let j = 0; j < data[i].confirmed.length; j++) {
+                        valoresPorRegion[region][j] = parseInt(data[i].confirmed[j].value);
                     }
                 }
             }
 
             // Preparamos los datos para Google Charts
-            let datosGrafico = [['Fecha', 'Total Confirmados']];
+            let datosGrafico = [['Fecha'].concat(regiones)];
             for (let i = 0; i < fechas.length; i++) {
-                datosGrafico.push([fechas[i], sumaPorDia[i]]);
+                let fila = [fechas[i]];
+                for (let r of regiones) {
+                    fila.push(valoresPorRegion[r][i]);
+                }
+                datosGrafico.push(fila);
             }
 
+            // Mostramos gráfico
             let dataTable = google.visualization.arrayToDataTable(datosGrafico);
-
             let options = {
-                title: 'Crecimiento diario (sin Lima y Callao)',
+                title: 'Crecimiento diario por región (sin Lima y Callao)',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };

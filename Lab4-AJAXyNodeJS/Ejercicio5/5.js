@@ -1,4 +1,3 @@
-// Cargar Google Charts
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(cargarDatos);
 
@@ -10,15 +9,13 @@ function cargarDatos() {
             let regiones = [];
             let valoresPorRegion = {};
 
-            // Obtener fechas desde la primera región
             for (let i = 0; i < data.length; i++) {
                 for (let j = 0; j < data[i].confirmed.length; j++) {
                     fechas.push(data[i].confirmed[j].date);
                 }
-                break; // solo una vez
+                break;
             }
 
-            // Recolectar datos de todas las regiones
             for (let i = 0; i < data.length; i++) {
                 let region = data[i].region;
                 regiones.push(region);
@@ -29,7 +26,6 @@ function cargarDatos() {
                 }
             }
 
-            // Crear los datos para el gráfico
             let datosGrafico = [['Fecha'].concat(regiones)];
 
             for (let i = 0; i < fechas.length; i++) {
@@ -43,7 +39,7 @@ function cargarDatos() {
             let dataTable = google.visualization.arrayToDataTable(datosGrafico);
 
             let options = {
-                title: 'Comparación de casos confirmados por región',
+                title: 'Comparación de casos confirmados por cada región',
                 curveType: 'function',
                 legend: { position: 'bottom' },
                 tooltip: { trigger: 'none' } 

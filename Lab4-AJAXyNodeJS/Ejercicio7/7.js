@@ -1,7 +1,5 @@
-// Cargamos Google Charts
 google.charts.load('current', {'packages':['corechart']});
 
-// Al cargar la página, llenamos el select con las regiones del JSON
 window.onload = function () {
     fetch('../data.json')
         .then(res => res.json())
@@ -17,7 +15,6 @@ window.onload = function () {
         });
 };
 
-// Esta función se activa al hacer clic en el botón
 function generarGrafico() {
     google.charts.setOnLoadCallback(() => {
         fetch('../data.json')
@@ -26,14 +23,12 @@ function generarGrafico() {
                 const select = document.getElementById("regionesSelect");
                 let seleccionadas = [];
 
-                // Obtenemos las regiones seleccionadas
                 for (let i = 0; i < select.options.length; i++) {
                     if (select.options[i].selected) {
                         seleccionadas.push(select.options[i].value);
                     }
                 }
 
-                // Validación básica
                 if (seleccionadas.length === 0) {
                     alert("Selecciona al menos una región para comparar.");
                     return;
@@ -42,12 +37,10 @@ function generarGrafico() {
                 let fechas = [];
                 let valores = {};
 
-                // Inicializamos los arrays de cada región
                 for (let r of seleccionadas) {
                     valores[r] = [];
                 }
 
-                // Buscamos en el JSON los datos de las regiones seleccionadas
                 for (let region of data) {
                     if (seleccionadas.includes(region.region)) {
                         for (let i = 0; i < region.confirmed.length; i++) {
@@ -59,7 +52,6 @@ function generarGrafico() {
                     }
                 }
 
-                // Construimos la tabla para Google Charts
                 let datosGrafico = [['Fecha'].concat(seleccionadas)];
                 for (let i = 0; i < fechas.length; i++) {
                     let fila = [fechas[i]];
@@ -69,7 +61,6 @@ function generarGrafico() {
                     datosGrafico.push(fila);
                 }
 
-                // Mostramos el gráfico
                 let dataTable = google.visualization.arrayToDataTable(datosGrafico);
                 let options = {
                     title: 'Comparación personalizada de regiones',

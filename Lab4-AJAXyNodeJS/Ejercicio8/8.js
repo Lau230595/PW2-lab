@@ -1,4 +1,3 @@
-// Cargamos Google Charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(cargarDatos);
 
@@ -10,7 +9,6 @@ function cargarDatos() {
             let regiones = [];
             let valoresPorRegion = {};
 
-            // Usamos fechas del primer registro válido
             for (let i = 0; i < data.length; i++) {
                 if (data[i].region !== "Lima" && data[i].region !== "Callao") {
                     for (let j = 0; j < data[i].confirmed.length; j++) {
@@ -20,7 +18,6 @@ function cargarDatos() {
                 }
             }
 
-            // Recorremos regiones que NO sean Lima ni Callao
             for (let i = 0; i < data.length; i++) {
                 let region = data[i].region;
                 if (region !== "Lima" && region !== "Callao") {
@@ -33,7 +30,6 @@ function cargarDatos() {
                 }
             }
 
-            // Preparamos los datos para Google Charts
             let datosGrafico = [['Fecha'].concat(regiones)];
             for (let i = 0; i < fechas.length; i++) {
                 let fila = [fechas[i]];
@@ -43,7 +39,6 @@ function cargarDatos() {
                 datosGrafico.push(fila);
             }
 
-            // Mostramos gráfico
             let dataTable = google.visualization.arrayToDataTable(datosGrafico);
             let options = {
                 title: 'Crecimiento diario por región (sin Lima y Callao)',

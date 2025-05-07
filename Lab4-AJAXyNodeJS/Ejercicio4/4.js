@@ -26,7 +26,7 @@ function cargarDatos() {
 
             let datosGoogle = google.visualization.arrayToDataTable(dataGrafico);
             let opciones = {
-                title: 'Evolución de casos en Arequipa',
+                title: 'Incremento de casos en Arequipa',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };

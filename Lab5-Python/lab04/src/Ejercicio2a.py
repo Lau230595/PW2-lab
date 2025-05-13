@@ -4,7 +4,7 @@ from chessPictures import *
 blanco = knight
 negro = knight.negative()
 
-fila1 = blanco.join(negro)
-fila2 = negro.join(blanco)
+a= blanco.join(negro)
+b= negro.join(blanco)
 
-draw(fila1.up(fila2))
+draw(a.up(b))

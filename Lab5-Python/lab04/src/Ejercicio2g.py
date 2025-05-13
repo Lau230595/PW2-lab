@@ -48,9 +48,9 @@ fila_piezas_blancas = (
     .join(casilla_blanca(rock))
 )
 
-cuadro1 = square.join(square.negative()).horizontalRepeat(4)
-cuadro2 = square.negative().join(square).horizontalRepeat(4)
-centro = cuadro1.up(cuadro2).verticalRepeat(2)
+c1 = square.join(square.negative()).horizontalRepeat(4)
+c2 = square.negative().join(square).horizontalRepeat(4)
+centro = c1.up(c2).verticalRepeat(2)
 
 tablero = (
     fila_piezas_negras

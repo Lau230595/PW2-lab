@@ -1,4 +1,4 @@
-from pieces import *
+from pieces import Picture
 from picture import *
 
 bishop = Picture(BISHOP)

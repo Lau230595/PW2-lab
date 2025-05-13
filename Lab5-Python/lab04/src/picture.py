@@ -15,14 +15,14 @@ class Picture:
     """ Devuelve el espejo vertical de la imagen """
     vertical = []
     for value in self.img:
-        fila_invertida = value[::-1]  # Invertir la fila de derecha a izquierda
+        fila_invertida = value[::-1]  
         vertical.append(fila_invertida)
     return Picture(vertical)
 
   def horizontalMirror(self):
     """ Devuelve el espejo horizontal de la imagen """
     resultado = []
-    for i in range(len(self.img)-1, -1, -1):  # recorre de abajo hacia arriba
+    for i in range(len(self.img)-1, -1, -1):
         resultado.append(self.img[i])
     return Picture(resultado)
 
@@ -32,7 +32,7 @@ class Picture:
     for fila in self.img:
             nueva_fila = ""
             for caracter in fila:
-                nuevo_color = self._invColor(caracter)  # Usa la función _invColor
+                nuevo_color = self._invColor(caracter)
                 nueva_fila += nuevo_color
             resultado.append(nueva_fila)
     return Picture(resultado)
@@ -42,7 +42,7 @@ class Picture:
         al lado derecho de la figura actual """
     resultado = []
     for i in range(len(self.img)):
-            nueva_fila = self.img[i] + p.img[i]  # Une fila por fila
+            nueva_fila = self.img[i] + p.img[i]
             resultado.append(nueva_fila)
     return Picture(resultado)
 
@@ -86,7 +86,6 @@ class Picture:
             resultado.append(fila)
     return Picture(resultado)
 
-  #Extra: Sólo para realmente viciosos 
   def rotate(self):
     """Devuelve una figura rotada en 90 grados, puede ser en sentido horario
     o antihorario"""

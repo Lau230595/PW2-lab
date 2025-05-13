@@ -7,4 +7,4 @@ negro = knight.negative()
 a= blanco.join(negro)
 b= negro.join(blanco)
 
-draw(a.up(b))
+draw(b.up(a))

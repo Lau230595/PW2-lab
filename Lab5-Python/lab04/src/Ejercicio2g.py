@@ -50,14 +50,14 @@ fila_piezas_blancas = (
 
 c1 = square.join(square.negative()).horizontalRepeat(4)
 c2 = square.negative().join(square).horizontalRepeat(4)
-centro = c1.up(c2).verticalRepeat(2)
+centro = c2.up(c1).verticalRepeat(2)
 
 tablero = (
-    fila_piezas_negras
-    .up(fila_peones_negras)
-    .up(centro)
+    fila_piezas_blancas
     .up(fila_peones_blancas)
-    .up(fila_piezas_blancas)
+    .up(centro)
+    .up(fila_peones_negras)
+    .up(fila_piezas_negras)
 )
 
 draw(tablero)

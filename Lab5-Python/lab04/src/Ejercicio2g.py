@@ -1,29 +1,63 @@
 from interpreter import draw
 from chessPictures import *
 
-# Función para invertir color
-def negro(p): return p.negative()
+def casilla_blanca(p): return square.under(p)
+def casilla_negra(p): return square.negative().under(p)
 
-# Fila de piezas mayores
-fila_negra = negro(rock).join(negro(knight)).join(negro(bishop)).join(negro(queen)).join(negro(king)).join(negro(bishop)).join(negro(knight)).join(negro(rock))
-fila_blanca = rock.join(knight).join(bishop).join(queen).join(king).join(bishop).join(knight).join(rock)
+fila_piezas_negras = (
+    casilla_blanca(rock.negative())
+    .join(casilla_negra(knight.negative()))
+    .join(casilla_blanca(bishop.negative()))
+    .join(casilla_negra(queen.negative()))
+    .join(casilla_blanca(king.negative()))
+    .join(casilla_negra(bishop.negative()))
+    .join(casilla_blanca(knight.negative()))
+    .join(casilla_negra(rock.negative()))
+)
 
-# Fila de peones reales
-fila_peones_negros = negro(pawn).horizontalRepeat(8)
-fila_peones_blancos = pawn.horizontalRepeat(8)
+fila_peones_negras = (
+    casilla_negra(pawn.negative())
+    .join(casilla_blanca(pawn.negative()))
+    .join(casilla_negra(pawn.negative()))
+    .join(casilla_blanca(pawn.negative()))
+    .join(casilla_negra(pawn.negative()))
+    .join(casilla_blanca(pawn.negative()))
+    .join(casilla_negra(pawn.negative()))
+    .join(casilla_blanca(pawn.negative()))
+)
 
-# Tablero vacío (6 filas)
+fila_peones_blancas = (
+    casilla_blanca(pawn)
+    .join(casilla_negra(pawn))
+    .join(casilla_blanca(pawn))
+    .join(casilla_negra(pawn))
+    .join(casilla_blanca(pawn))
+    .join(casilla_negra(pawn))
+    .join(casilla_blanca(pawn))
+    .join(casilla_negra(pawn))
+)
+
+fila_piezas_blancas = (
+    casilla_negra(rock)
+    .join(casilla_blanca(knight))
+    .join(casilla_negra(bishop))
+    .join(casilla_blanca(queen))
+    .join(casilla_negra(king))
+    .join(casilla_blanca(bishop))
+    .join(casilla_negra(knight))
+    .join(casilla_blanca(rock))
+)
+
 cuadro1 = square.join(square.negative()).horizontalRepeat(4)
 cuadro2 = square.negative().join(square).horizontalRepeat(4)
 centro = cuadro1.up(cuadro2).verticalRepeat(2)
 
-# Armar tablero completo: negras arriba, blancas abajo
-tablero_completo = (
-    fila_negra
-    .up(fila_peones_negros)
+tablero = (
+    fila_piezas_negras
+    .up(fila_peones_negras)
     .up(centro)
-    .up(fila_peones_blancos)
-    .up(fila_blanca)
+    .up(fila_peones_blancas)
+    .up(fila_piezas_blancas)
 )
 
-draw(tablero_completo)
+draw(tablero)

@@ -22,8 +22,8 @@ class Picture:
   def horizontalMirror(self):
     """ Devuelve el espejo horizontal de la imagen """
     resultado = []
-    for i in range(len(self.img) - 1, -1, -1):
-        resultado.append(self.img[i])  # Agrega las filas de abajo hacia arriba
+    for i in range(len(self.img)-1, -1, -1):  # recorre de abajo hacia arriba
+        resultado.append(self.img[i])
     return Picture(resultado)
 
   def negative(self):

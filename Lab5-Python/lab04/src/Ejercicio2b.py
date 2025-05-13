@@ -3,8 +3,9 @@ from chessPictures import *
  
 blanco = knight
 negro = knight.negative()
+blanco_invertido = knight.verticalMirror()
 
-a = blanco.join(negro)
-b = negro.join(blanco.horizontalMirror())
+fila1 = blanco.join(negro)
+fila2 = negro.join(blanco_invertido)
 
-draw(a.up(b))
+draw(fila1.up(fila2))

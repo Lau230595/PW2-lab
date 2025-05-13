@@ -1,5 +1,5 @@
-from pieces import Picture
-from picture import *
+from pieces import *
+from picture import Picture
 
 bishop = Picture(BISHOP)
 king = Picture(KING)

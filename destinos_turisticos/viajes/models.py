@@ -1,11 +1,12 @@
 from django.db import models
 
-class DestinosTuristicos(models.Model):
-    nombreCiudad = models.CharField(max_length=100)
-    descripcionCiudad = models.TextField()
-    imagenCiudad = models.CharField(max_length=200)
-    precioTour = models.DecimalField(max_digits=8, decimal_places=2)
-    ofertaTour = models.BooleanField(default=False)
+# Create your models here.
 
-    def __str__(self):
-        return self.nombreCiudad
+
+class Destination(models.Model):
+    
+    name = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='pics')
+    desc = models.TextField()
+    price = models.IntegerField()
+    offer = models.BooleanField(default=False)

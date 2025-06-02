@@ -1,8 +1,7 @@
-"""
-URL configuration for destinos_turisticos project.
+"""telusko URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,20 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.urls import path, include
-from viajes import views as viajes_views
-from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
+    path('', include('travello.urls')),
     path('admin/', admin.site.urls),
-    path('', viajes_views.index, name='home'),
+    path('accounts/',include('accounts.urls'))
+] 
 
-    # LOGIN Y LOGOUT
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-
-    # REGISTRO PERSONALIZADO
-    path('registro/', viajes_views.registro, name='registro'),
-]
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

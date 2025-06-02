@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 20px;
+}
+
+h1, h2, h3 {
+    color: #1d3557;
+}
+
+.destino {
+    background-color: white;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px #ccc;
+    width: 80%;
+}
+
+.destino img {
+    width: 200px;
+    border-radius: 10px;
+}
+
+.boton {
+    background-color: #457b9d;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.boton:hover {
+    background-color: #1d3557;
+}

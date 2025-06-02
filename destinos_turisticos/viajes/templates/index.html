@@ -1,6 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Destinos Turísticos</title>
+    <link rel="stylesheet" href="{% static 'viajes/estilo.css' %}">
+</head>
+<body>
+
 <h2>Destinos Turísticos</h2>
+
 {% for destino in destinos %}
-  <div>
+  <div class="destino">
     <h3>{{ destino.nombreCiudad }}</h3>
     <p>{{ destino.descripcionCiudad }}</p>
     <img src="{{ destino.imagenCiudad }}" width="200px">
@@ -8,12 +19,18 @@
     {% if destino.ofertaTour %}
       <strong>¡En oferta!</strong>
     {% endif %}
-    {% if user.is_authenticated %}
-      Bienvenido, {{ user.username }} |
-      <a href="{% url 'logout' %}">Cerrar sesión</a>
-    {% else %}
-      <a href="{% url 'login' %}">Iniciar sesión</a> |
-      <a href="{% url 'registro' %}">Registrarse</a>
-    {% endif %}
+    
+    <div class="sesion">
+      {% if user.is_authenticated %}
+        Bienvenido, {{ user.username }} |
+        <a href="{% url 'logout' %}" class="boton">Cerrar sesión</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="boton">Iniciar sesión</a> |
+        <a href="{% url 'registro' %}" class="boton">Registrarse</a>
+      {% endif %}
+    </div>
   </div>
 {% endfor %}
+
+</body>
+</html>

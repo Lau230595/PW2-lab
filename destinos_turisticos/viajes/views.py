@@ -1,6 +1,14 @@
-from django.shortcuts import render
-from .models import DestinosTuristicos
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
 
-def index(request):
-    destinos = DestinosTuristicos.objects.all()
-    return render(request, 'index.html', {'destinos': destinos})
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registro.html', {'form': form})

@@ -8,5 +8,12 @@
     {% if destino.ofertaTour %}
       <strong>¡En oferta!</strong>
     {% endif %}
+    {% if user.is_authenticated %}
+      Bienvenido, {{ user.username }} |
+      <a href="{% url 'logout' %}">Cerrar sesión</a>
+    {% else %}
+      <a href="{% url 'login' %}">Iniciar sesión</a> |
+      <a href="{% url 'registro' %}">Registrarse</a>
+    {% endif %}
   </div>
 {% endfor %}

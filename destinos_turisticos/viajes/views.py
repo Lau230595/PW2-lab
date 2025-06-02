@@ -1,14 +1,14 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.shortcuts import render, redirect
+from .forms import RegistroUsuarioForm
 
 def registro(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistroUsuarioForm(request.POST)
         if form.is_valid():
             usuario = form.save()
             login(request, usuario)
             return redirect('home')
     else:
-        form = UserCreationForm()
+        form = RegistroUsuarioForm()
     return render(request, 'registro.html', {'form': form})

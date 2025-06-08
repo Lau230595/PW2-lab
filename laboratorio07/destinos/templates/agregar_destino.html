@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Añadir destino turístico</title>
+</head>
+<body>
+    <h2>Registrar nuevo destino turístico</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <p><a href="{% url 'index' %}">Volver al inicio</a></p>
+</body>
+</html>

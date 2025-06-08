@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class DestinosTuristicos(models.Model):
     nombreCiudad = models.CharField(max_length=100)
@@ -9,3 +10,11 @@ class DestinosTuristicos(models.Model):
 
     def __str__(self):
         return self.nombreCiudad
+    
+class Historial(models.Model):
+    destino = models.CharField(max_length=100)
+    accion = models.CharField(max_length=50)  # "Modificado", "Eliminado", etc.
+    fecha = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.destino} - {self.accion} - {self.fecha.strftime('%Y-%m-%d %H:%M')}"

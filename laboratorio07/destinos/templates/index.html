@@ -234,7 +234,17 @@
 		</div>
 	</div>
 
+	{% if user.is_authenticated %}
+    <div style="text-align:center; margin-top:20px;">
+        <a href="{% url 'agregar_destino' %}" class="btn btn-primary">+ Añadir nuevo destino</a>
+    </div>
+	{% endif %}
+
 	{% for destino in destinos %}
+	<a href="{% url 'editar_destino' destino.id %}">Editar</a>
+	<a href="{% url 'eliminar_destino' destino.id %}">Eliminar</a>
+	<a href="{% url 'historial' %}">Ver historial de cambios</a>
+
 	<!-- Destination -->
 	<div class="destination item">
 		<div class="destination_image">

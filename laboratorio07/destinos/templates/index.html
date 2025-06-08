@@ -234,6 +234,29 @@
 		</div>
 	</div>
 
+	{% for destino in destinos %}
+	<!-- Destination -->
+	<div class="destination item">
+		<div class="destination_image">
+			{% if destino.imagenCiudad %}
+				<img src="{{ destino.imagenCiudad.url }}" alt="{{ destino.nombreCiudad }}">
+			{% else %}
+				<img src="{% static 'images/default.jpg' %}" alt="Imagen no disponible">
+			{% endif %}
+			{% if destino.ofertaTour %}
+				<div class="spec_offer text-center"><a href="#">¡En oferta!</a></div>
+			{% endif %}
+		</div>
+		<div class="destination_content">
+			<div class="destination_title"><a href="#">{{ destino.nombreCiudad }}</a></div>
+			<div class="destination_subtitle">
+				<p>{{ destino.descripcionCiudad }}</p>
+			</div>
+			<div class="destination_price">Desde S/. {{ destino.precioTour }}</div>
+		</div>
+	</div>
+	{% endfor %}
+
 	<!-- Destinations -->
 
 	<div class="destinations" id="destinations">

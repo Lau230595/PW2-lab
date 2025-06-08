@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "send",
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,12 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+EMAIL_HOST = 'smtp.husmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'anthony@prettyprinted.com'
+#EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

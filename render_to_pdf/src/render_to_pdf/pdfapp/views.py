@@ -15,8 +15,16 @@ class GeneratePDF(View):
         }
         html = template.render(context)
         pdf = render_to_pdf('invoice.html', context)
-        return HttpResponse(pdf, content_type='application/pdf')
-    
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %("12341231")
+            content = "inline;filename='%s'" %(filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            return response 
+        return HttpResponse("Not found")
     #def generate_view(self, request, *args, **kwargs):
      #   template = get_template('invoice.html')
       #  context = {

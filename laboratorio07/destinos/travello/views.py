@@ -14,6 +14,7 @@ def index(request):
     destinos = DestinosTuristicos.objects.all()
     return render(request, "index.html", {"destinos": destinos})
 
+
 # FORMULARIO DE REGISTRO
 def register_view(request):
     if request.method == "POST":
@@ -23,7 +24,7 @@ def register_view(request):
         # Verificar si ya existe el usuario
         if User.objects.filter(username=username).exists():
             return render(request, "register.html", {"error": "El usuario ya existe"})
-        
+
         # Crear usuario
         user = User.objects.create_user(username=username, password=password)
         return redirect("login")  # redirigir al login después del registro
@@ -53,32 +54,32 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
+
 def agregar_destino(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = DestinoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')  # Regresa a la lista principal
+            return redirect("index")  # Regresa a la lista principal
     else:
         form = DestinoForm()
-    return render(request, 'agregar_destino.html', {'form': form})
+    return render(request, "agregar_destino.html", {"form": form})
+
 
 def editar_destino(request, destino_id):
     destino = get_object_or_404(DestinosTuristicos, id=destino_id)
-    
+
     if request.method == "POST":
         form = DestinoForm(request.POST, request.FILES, instance=destino)
         if form.is_valid():
             form.save()
-            Historial.objects.create(
-                destino=destino.nombreCiudad,
-                accion="Modificado"
-        )
-        return redirect('index')
+            Historial.objects.create(destino=destino.nombreCiudad, accion="Modificado")
+        return redirect("index")
     else:
         form = DestinoForm(instance=destino)
-    
-    return render(request, 'editar_destino.html', {'form': form, 'destino': destino})
+
+    return render(request, "editar_destino.html", {"form": form, "destino": destino})
+
 
 def nuevo_destino(request):
     if request.method == "POST":
@@ -93,26 +94,24 @@ def nuevo_destino(request):
             descripcionCiudad=descripcion,
             imagenCiudad=imagen,
             precioTour=precio,
-            ofertaTour=oferta
+            ofertaTour=oferta,
         )
         destino.save()
         return redirect("index")
     return render(request, "nuevo_destino.html")
 
+
 def eliminar_destino(request, destino_id):
     destino = get_object_or_404(DestinosTuristicos, id=destino_id)
-    
+
     if request.method == "POST":
-        Historial.objects.create(
-            destino=destino.nombreCiudad,
-            accion="Eliminado"
-        )
+        Historial.objects.create(destino=destino.nombreCiudad, accion="Eliminado")
         destino.delete()
-        return redirect('index')
+        return redirect("index")
 
+    return render(request, "eliminar_destino.html", {"destino": destino})
 
-    return render(request, 'eliminar_destino.html', {'destino': destino})
 
 def ver_historial(request):
-    historial = Historial.objects.all().order_by('-fecha')
-    return render(request, 'historial.html', {'historial': historial})
+    historial = Historial.objects.all().order_by("-fecha")
+    return render(request, "historial.html", {"historial": historial})

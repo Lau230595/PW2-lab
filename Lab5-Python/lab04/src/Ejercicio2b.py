@@ -1,6 +1,6 @@
 from interpreter import draw
 from chessPictures import *
- 
+
 blanco = knight
 negro = knight.negative()
 invertirb = blanco.verticalMirror()

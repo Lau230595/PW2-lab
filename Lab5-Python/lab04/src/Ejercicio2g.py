@@ -1,8 +1,14 @@
 from interpreter import draw
 from chessPictures import *
 
-def casilla_blanca(p): return square.under(p)
-def casilla_negra(p): return square.negative().under(p)
+
+def casilla_blanca(p):
+    return square.under(p)
+
+
+def casilla_negra(p):
+    return square.negative().under(p)
+
 
 fila_piezas_negras = (
     casilla_blanca(rock.negative())
@@ -53,8 +59,7 @@ c2 = square.negative().join(square).horizontalRepeat(4)
 centro = c2.up(c1).verticalRepeat(2)
 
 tablero = (
-    fila_piezas_blancas
-    .up(fila_peones_blancas)
+    fila_piezas_blancas.up(fila_peones_blancas)
     .up(centro)
     .up(fila_peones_negras)
     .up(fila_piezas_negras)

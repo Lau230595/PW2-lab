@@ -11,21 +11,15 @@ def esEscalar(m):
                 return False
     return True
 
+
 def esUnitaria(m):
     return m[0][0] == 1 and esEscalar(m)
 
-# Ejemplo de uso
-matriz1 = [
-    [5, 0, 0],
-    [0, 5, 0],
-    [0, 0, 5]
-]
 
-matriz2 = [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1]
-]
+# Ejemplo de uso
+matriz1 = [[5, 0, 0], [0, 5, 0], [0, 0, 5]]
+
+matriz2 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
 print("¿matriz1 es escalar?", esEscalar(matriz1))
 print("¿matriz2 es unitaria?", esUnitaria(matriz2))

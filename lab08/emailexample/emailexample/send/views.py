@@ -1,13 +1,12 @@
-from django.shortcuts import render
 from django.core.mail import send_mail
+from django.http import HttpResponse
 
-# Create your views here.
 def index(request):
-        
-        send_mail('Hello from PrettyPrinted',
-        'Hello there.This is an automated message.',
-        'anthony@prettyprinted.com',
-        ['wojitok104@adrewire.com'],
-        fail_silently=False)
-
-        return render(request, 'send/index.html')
+    send_mail(
+        subject='Correo desde Django',
+        message='Hola, este es un correo de prueba real enviado desde Django con Gmail.',
+        from_email='laluvihu23@gmail.com',
+        recipient_list=['lvilcah@unsa.edu.pe'],
+        fail_silently=False,
+    )
+    return HttpResponse("Correo enviado")

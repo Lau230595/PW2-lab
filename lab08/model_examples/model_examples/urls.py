@@ -17,7 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from example import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('uno-a-muchos/', views.uno_a_muchos, name='uno_a_muchos'),
+    path('muchos-a-muchos/', views.muchos_a_muchos, name='muchos_a_muchos'),
 ]
+

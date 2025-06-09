@@ -1,0 +1,9 @@
+<h2>Relación Uno a Muchos</h2>
+{% for language in languages %}
+    <h3>{{ language.nombre }}</h3>
+    <ul>
+        {% for framework in language.framework_set.all %}
+            <li>{{ framework.name }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}

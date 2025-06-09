@@ -1,0 +1,10 @@
+<h2>Relación Muchos a Muchos</h2>
+
+{% for personaje in personajes %}
+    <h3>{{ personaje.name }}</h3>
+    <ul>
+        {% for peli in personaje.movies.all %}
+            <li>{{ peli.name }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}

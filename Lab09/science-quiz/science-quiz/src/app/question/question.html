@@ -1,0 +1,9 @@
+<div style="text-align: center;">
+  <h2>{{ question?.question }}</h2>
+
+  <div *ngFor="let option of question?.options">
+    <button (click)="selectAnswer(option)">
+      {{ option }}
+    </button>
+  </div>
+</div>

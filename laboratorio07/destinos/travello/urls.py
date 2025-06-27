@@ -12,4 +12,6 @@ urlpatterns = [
     path("editar/<int:destino_id>/", views.editar_destino, name="editar_destino"),
     path("eliminar/<int:destino_id>/", views.eliminar_destino, name="eliminar_destino"),
     path("historial/", views.ver_historial, name="historial"),
+    path('destinos/', views.lista_destinos, name='lista_destinos'),
+    path('nuevo_destino/', views.nuevo_destino, name='nuevo_destino'),
 ]

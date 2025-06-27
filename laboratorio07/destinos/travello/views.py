@@ -14,6 +14,9 @@ def index(request):
     destinos = DestinosTuristicos.objects.all()
     return render(request, "index.html", {"destinos": destinos})
 
+def lista_destinos(request):
+    destinos = DestinosTuristicos.objects.all()
+    return render(request, 'destinations.html', {'destinos': destinos})
 
 # FORMULARIO DE REGISTRO
 def register_view(request):

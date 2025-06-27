@@ -55,7 +55,7 @@ ROOT_URLCONF = "emailexample.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,7 +123,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'laluvihu23@gmail.com'
-EMAIL_HOST_PASSWORD = 'wtcf merj azcm tczj'
+EMAIL_HOST_PASSWORD = 'aoxgucwisnuaatcx'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 # Default primary key field type

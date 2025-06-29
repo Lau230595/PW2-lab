@@ -53,6 +53,28 @@ export class WordService {
     this.letrasCorrectas.clear();
     this.letrasIncorrectas.clear();
   }
-
   
+  /**
+   * Procesa la letra ingresada por el jugador.
+   * - Verifica si ya fue jugada.
+   * - La agrega a correctas o incorrectas.
+   * - Devuelve true si es correcta, false si no.
+   */
+  public adivinarLetra(letra: string): boolean {
+    letra = letra.toUpperCase();
+
+    // Verificar si ya fue jugada
+    if (this.letrasCorrectas.has(letra) || this.letrasIncorrectas.has(letra)) {
+      return false;
+    }
+
+    // Revisar si la letra está en la palabra secreta
+    if (this.palabraSecreta.includes(letra)) {
+      this.letrasCorrectas.add(letra);
+      return true;
+    } else {
+      this.letrasIncorrectas.add(letra);
+      return false;
+    }
+  }
 }

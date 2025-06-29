@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { WordService } from '../word'; // Importación del servicio
+import { WordService } from '../word';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-game',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './game.html',
   styleUrls: ['./game.css']
 })
+
 export class GameComponent implements OnInit {
   alphabet: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   message: string = '';
@@ -13,21 +18,26 @@ export class GameComponent implements OnInit {
   constructor(public wordService: WordService) {}
 
   ngOnInit(): void {
-    this.wordService.restart(); // Inicia el juego al cargar el componente
+    // Inicia el juego al cargar el componente
+    this.wordService.iniciarNuevoJuego();
   }
 
   onGuess(letter: string): void {
-    this.wordService.guessLetter(letter);
+    const acierto = this.wordService.adivinarLetra(letter);
 
-    if (this.wordService.hasWon()) {
+    if (this.wordService.isGanador()) {
       this.message = '¡Ganaste!';
-    } else if (this.wordService.hasLost()) {
-      this.message = `¡Perdiste! La palabra era: ${this.wordService.secretWord}`;
+    } else if (this.wordService.isPerdedor()) {
+      this.message = `¡Perdiste! La palabra era: ${this.wordService.getPalabraSecreta()}`;
+    } else if (!acierto) {
+      this.message = '¡Incorrecto!';
+    } else {
+      this.message = '';
     }
   }
 
   reiniciarJuego(): void {
-    this.wordService.restart();
+    this.wordService.iniciarNuevoJuego();
     this.message = '';
   }
 }

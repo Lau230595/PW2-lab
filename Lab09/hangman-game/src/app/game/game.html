@@ -1,17 +1,17 @@
 <h2>Juego del Ahorcado</h2>
 
-<p>Palabra: <span style="letter-spacing: 10px;">{{ wordService.getDisplayWord() }}</span></p>
+<p>Palabra: <span style="letter-spacing: 10px;">{{ wordService.getPalabraConGuiones() }}</span></p>
 
-<p>Intentos restantes: {{ wordService.getAttemptsLeft() }}</p>
+<p>Intentos restantes: {{ wordService.getIntentosRestantes() }}</p>
 
-<p>Letras equivocadas: {{ wordService.getWrongLetters().join(', ') }}</p>
+<p>Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}</p>
 
 <!-- Botones del abecedario -->
 <div>
   <button 
     *ngFor="let letter of alphabet"
     (click)="onGuess(letter)"
-    [disabled]="wordService.guessedLetters.includes(letter)">
+    [disabled]="wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
     {{ letter }}
   </button>
 </div>

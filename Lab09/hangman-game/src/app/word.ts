@@ -101,5 +101,22 @@ export class WordService {
   public getIntentosRestantes(): number {
     return this.intentosMaximos - this.letrasIncorrectas.size;
   }
+  /**
+   * Verifica si el jugador ganó.
+   * Retorna true si todas las letras fueron adivinadas.
+   */
+  public isGanador(): boolean {
+    return this.palabraSecreta
+      .split('')
+      .every(letra => this.letrasCorrectas.has(letra));
+  }
+
+  /**
+   * Verifica si el jugador perdió.
+   * Retorna true si ya no quedan intentos.
+   */
+  public isPerdedor(): boolean {
+    return this.getIntentosRestantes() <= 0;
+  }
 
 }

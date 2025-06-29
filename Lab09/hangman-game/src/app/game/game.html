@@ -1,1 +1,22 @@
-<p>game works!</p>
+<h2>Juego del Ahorcado</h2>
+
+<p>Palabra: <span style="letter-spacing: 10px;">{{ wordService.getDisplayWord() }}</span></p>
+
+<p>Intentos restantes: {{ wordService.getAttemptsLeft() }}</p>
+
+<p>Letras equivocadas: {{ wordService.getWrongLetters().join(', ') }}</p>
+
+<!-- Botones del abecedario -->
+<div>
+  <button 
+    *ngFor="let letter of alphabet"
+    (click)="onGuess(letter)"
+    [disabled]="wordService.guessedLetters.includes(letter)">
+    {{ letter }}
+  </button>
+</div>
+
+<p style="font-weight: bold;">{{ message }}</p>
+
+<!-- Reiniciar -->
+<button (click)="reiniciarJuego()">Reiniciar juego</button>

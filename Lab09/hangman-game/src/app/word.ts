@@ -35,7 +35,7 @@ export class WordService {
     return this.palabraSecreta;
   }
 
-    // Letras acertadas por el jugador
+  // Letras acertadas por el jugador
   private letrasCorrectas: Set<string> = new Set();
 
   // Letras erradas por el jugador
@@ -43,5 +43,16 @@ export class WordService {
 
   // Número máximo de intentos permitidos
   private intentosMaximos: number = 6;
+  /**
+ * Reinicia el juego:
+ * - Selecciona una nueva palabra al azar.
+ * - Limpia las letras acertadas e incorrectas.
+ */
+  public iniciarNuevoJuego(): void {
+    this.seleccionarPalabraAlAzar();
+    this.letrasCorrectas.clear();
+    this.letrasIncorrectas.clear();
+  }
 
+  
 }

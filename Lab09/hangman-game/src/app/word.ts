@@ -34,4 +34,14 @@ export class WordService {
   public getPalabraSecreta(): string {
     return this.palabraSecreta;
   }
+
+    // Letras acertadas por el jugador
+  private letrasCorrectas: Set<string> = new Set();
+
+  // Letras erradas por el jugador
+  private letrasIncorrectas: Set<string> = new Set();
+
+  // Número máximo de intentos permitidos
+  private intentosMaximos: number = 6;
+
 }

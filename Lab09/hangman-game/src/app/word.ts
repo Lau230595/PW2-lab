@@ -3,6 +3,11 @@
  * Incluye la lista de palabras y la selección aleatoria.
  * Próximamente se le añadirá el estado del juego.
  */
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class WordService {
 
   // Lista de palabras posibles para adivinar

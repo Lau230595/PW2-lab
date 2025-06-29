@@ -16,3 +16,13 @@ export class GameComponent implements OnInit {
     this.wordService.restart(); // Inicia la partida al cargar
   }
 }
+
+  onGuess(letter: string): void {
+  this.wordService.guessLetter(letter);
+
+  if (this.wordService.hasWon()) {
+    this.message = '¡Ganaste!';
+  } else if (this.wordService.hasLost()) {
+    this.message = `¡Perdiste! La palabra era: ${this.wordService.secretWord}`;
+  }
+}

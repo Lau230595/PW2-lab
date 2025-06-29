@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-game',
-  imports: [],
   templateUrl: './game.html',
-  styleUrl: './game.css'
+  styleUrls: ['./game.css']
 })
-export class Game {
-
+export class GameComponent {
+  alphabet: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
 }

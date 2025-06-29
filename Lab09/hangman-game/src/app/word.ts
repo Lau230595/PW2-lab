@@ -53,7 +53,7 @@ export class WordService {
     this.letrasCorrectas.clear();
     this.letrasIncorrectas.clear();
   }
-  
+
   /**
    * Procesa la letra ingresada por el jugador.
    * - Verifica si ya fue jugada.
@@ -77,4 +77,29 @@ export class WordService {
       return false;
     }
   }
+  /**
+ * Devuelve la palabra secreta con guiones y letras acertadas.
+ * Ejemplo: A _ G U _ A _
+ */
+  public getPalabraConGuiones(): string {
+    return this.palabraSecreta
+      .split('')
+      .map(letra => (this.letrasCorrectas.has(letra) ? letra : '_'))
+      .join(' ');
+  }
+
+  /**
+   * Devuelve las letras incorrectas ingresadas por el jugador.
+   */
+  public getLetrasIncorrectas(): string[] {
+    return Array.from(this.letrasIncorrectas);
+  }
+
+  /**
+   * Devuelve la cantidad de intentos restantes.
+   */
+  public getIntentosRestantes(): number {
+    return this.intentosMaximos - this.letrasIncorrectas.size;
+  }
+
 }

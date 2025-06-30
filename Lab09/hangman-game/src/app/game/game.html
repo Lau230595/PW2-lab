@@ -1,31 +1,28 @@
 <h1>Juego del Ahorcado</h1>
 
-<<<<<<< HEAD
-<pre class="figura">
-{{ getFigura(wordService.getIntentosRestantes()) }}
-</pre>
-=======
-  <div class="word-display">
-    {{ wordService.getPalabraConGuiones() }}
-  </div>
-  <div class="imagen-ahorcado">
-    <img [src]="imagenAhorcado" alt="Ahorcado">
-  </div>
->>>>>>> 4c5fd24 (modificacion de imagen final y juego final)
+<!-- Mostrar imagen del ahorcado -->
+<div class="imagen-ahorcado">
+  <p>Ahorcado</p>
+  <img [src]="imagenAhorcado" alt="Ahorcado" />
+</div>
 
+<!-- Palabra oculta con guiones -->
 <div class="word-display">
   {{ wordService.getPalabraConGuiones() }}
 </div>
 
-<div class="remaining">
+<!-- Intentos restantes -->
+<h2 style="color: green;">
   Intentos restantes: {{ wordService.getIntentosRestantes() }}
+</h2>
+
+<!-- Letras incorrectas -->
+<div style="color: red; margin-bottom: 10px;">
+  <strong>Letras equivocadas:</strong>
+  {{ wordService.getLetrasIncorrectas().join(', ') }}
 </div>
 
-<div class="wrong-letters">
-  Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}
-</div>
-
-<!-- Botones del abecedario -->
+<!-- Botones del alfabeto -->
 <div class="letters-grid">
   <button 
     *ngFor="let letter of alphabet"
@@ -35,7 +32,10 @@
   </button>
 </div>
 
-<div class="win-message">{{ message }}</div>
+<!-- Mensaje de victoria o derrota -->
+<div class="win-message">
+  {{ message }}
+</div>
 
-<!-- Reiniciar -->
+<!-- Botón reiniciar -->
 <button class="restart" (click)="reiniciarJuego()">Reiniciar juego</button>

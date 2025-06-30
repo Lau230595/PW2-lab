@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-results',
   templateUrl: './results.html',
+  styleUrls: ['./results.css'],
+  imports: [RouterModule]
 })
 export class ResultsComponent {
   score: number = 0;

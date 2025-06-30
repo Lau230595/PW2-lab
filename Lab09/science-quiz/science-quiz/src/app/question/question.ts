@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuestionService } from '../question-service';
 
 @Component({
+  standalone: true,
   selector: 'app-question',
   templateUrl: './question.html',
-  styleUrls: ['./question.css']
+  styleUrls: ['./question.css'],
+  imports: [CommonModule, RouterModule]
 })
 export class QuestionComponent implements OnInit {
   currentQuestion: any;

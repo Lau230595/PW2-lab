@@ -25,7 +25,7 @@ export class GameComponent implements OnInit {
     this.wordService.iniciarNuevoJuego();
     this.message = '';
     this.juegoFinalizado = false;
-    this.imageIndex = 0; // Reiniciar imagen
+    this.imageIndex = 0; 
   }
 
   get imagenAhorcado(): string {
@@ -58,79 +58,4 @@ export class GameComponent implements OnInit {
     this.iniciarJuego();
   }
 
-  getFigura(intentos: number): string {
-    const dibujos = [
-    `
-        _______
-        |/      |
-        |
-        |
-        |
-        |
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |
-        |
-        |
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |       |
-        |       |
-        |
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |      \\|
-        |       |
-        |
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |      \\|/
-        |       |
-        |
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |      \\|/
-        |       |
-        |      /
-        |
-      __|__
-        `,
-    `
-        _______
-        |/      |
-        |      (_)
-        |      \\|/
-        |       |
-        |      / \\
-        |
-      __|__
-        `
-    ];
-    return dibujos[6 - intentos]; 
-  }
 }

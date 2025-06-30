@@ -1,23 +1,43 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #5ea3cb !important; 
-  height: 100%;
   margin: 0;
   padding: 0;
   color: #333;
   text-align: center;
 }
 
+/* Contenedor general que agrupa todo el contenido de la página */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px;
+}
+
+/* Título */
+h1 {
+  font-family: 'Courier New', monospace;
+  font-size: 45px;
+  margin-bottom: 10px;
+  color: rgb(34, 119, 209);
+  text-align: center;
+}
+
+
+/* Instrucciones */
 .instrucciones {
   background-color: #f9f9f9;
   border: 2px solid #ccc;
   border-radius: 15px;
   padding: 20px;
   max-width: 600px;
-  margin: 20px auto;
+  width: 90%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .instrucciones h2 {
@@ -37,68 +57,71 @@ body {
 
 .instrucciones strong {
   color: #d35400;
+  
 }
 
-
-.container {
-  max-width: 1250px;
-  margin: 60px auto;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 60px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+/* Imagen del ahorcado */
+.imagen-ahorcado {
+  margin: 10px 0;
+  padding: 10px;
   text-align: center;
 }
 
-h1 {
-  font-family: 'Courier New', monospace;
-  font-size: 65px;
-  margin-bottom: 35px;
-  color: rgb(34, 119, 209);
+.imagen-ahorcado img {
+  max-width: 250px;
+  height: auto;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   text-align: center;
 }
 
 .word-display {
-  font-size: 40px;
-  letter-spacing: 20px;
+  font-size: 30px;
+  letter-spacing: 10px;
   font-weight: bold;
-  margin: 45px 0;
+  margin: 25px 0;
   color: #000;
   text-align: center;
 }
 
 .remaining {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: #388e3c;
 }
 
 .wrong-letters {
-  font-size: 22px;
+  font-size: 18px;
   color: #d32f2f;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .letters-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 18px;
-  margin-top: 35px;
+  gap: 14px;
+  margin-top: 25px;
 }
 
 .letters-grid button {
-  width: 70px;
-  height: 70px;
-  font-size: 28px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
   font-weight: bold;
   background-color: #90caf9;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
-  text-align: center;
 }
 
 .letters-grid button:hover {
@@ -113,32 +136,25 @@ h1 {
 }
 
 .win-message {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: bold;
-  margin-top: 50px;
+  margin-top: 30px;
   color: #d32f2f;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 }
 
 button.restart {
-  margin-top: 35px;
-  padding: 16px 36px;
-  font-size: 22px;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 18px;
   background-color: #1976d2;
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button.restart:hover {
   background-color: #1565c0;
-}
-
-.imagen-ahorcado {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; 
 }

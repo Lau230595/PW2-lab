@@ -1,22 +1,32 @@
-<h2>Juego del Ahorcado</h2>
+<div class="container">
+  <h1>Juego del Ahorcado</h1>
 
-<p>Palabra: <span style="letter-spacing: 10px;">{{ wordService.getPalabraConGuiones() }}</span></p>
+  <div class="word-display">
+    {{ wordService.getPalabraConGuiones() }}
+  </div>
 
-<p>Intentos restantes: {{ wordService.getIntentosRestantes() }}</p>
+  <div class="remaining">
+    Intentos restantes: {{ wordService.getIntentosRestantes() }}
+  </div>
 
-<p>Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}</p>
+  <div class="wrong-letters">
+    Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}
+  </div>
 
-<!-- Botones del abecedario -->
-<div>
-  <button 
-    *ngFor="let letter of alphabet"
-    (click)="onGuess(letter)"
-    [disabled]="wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
-    {{ letter }}
-  </button>
+  <!-- Botones del abecedario -->
+  <div class="letters-grid">
+    <button 
+      *ngFor="let letter of alphabet"
+      (click)="onGuess(letter)"
+      [disabled]="wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
+      {{ letter }}
+    </button>
+  </div>
+
+  <div class="win-message">
+    {{ message }}
+  </div>
+
+  <!-- Reiniciar -->
+  <button class="restart" (click)="reiniciarJuego()">Reiniciar juego</button>
 </div>
-
-<p style="font-weight: bold;">{{ message }}</p>
-
-<!-- Reiniciar -->
-<button (click)="reiniciarJuego()">Reiniciar juego</button>

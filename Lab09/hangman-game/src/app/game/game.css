@@ -1,71 +1,72 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: white;
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff;
   margin: 0;
   padding: 0;
   color: #333;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1250px;
   margin: 60px auto;
-  background-color: #ffffff;
-  padding: 50px;
+  background-color: rgb(232, 247, 245);
+  padding: 60px;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
   text-align: center;
 }
 
 h1 {
-  font-size: 40px;
-  margin-bottom: 30px;
-  color: #1976d2;
+  font-family: 'Courier New', monospace;
+  font-size: 65px;
+  margin-bottom: 35px;
+  color: rgb(34, 119, 209);
 }
 
 .word-display {
-  font-size: 36px;
-  letter-spacing: 18px;
+  font-size: 40px;
+  letter-spacing: 20px;
   font-weight: bold;
-  margin: 40px 0;
+  margin: 45px 0;
   color: #000;
 }
 
 .remaining {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #388e3c;
 }
 
 .wrong-letters {
-  font-size: 20px;
+  font-size: 22px;
   color: #d32f2f;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .letters-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 18px;
+  margin-top: 35px;
 }
 
 .letters-grid button {
-  width: 65px;
-  height: 65px;
-  font-size: 24px;
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
   font-weight: bold;
   background-color: #90caf9;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
 }
 
 .letters-grid button:hover {
   background-color: #64b5f6;
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 .letters-grid button:disabled {
@@ -75,32 +76,25 @@ h1 {
 }
 
 .win-message {
-  font-size: 28px;
+  font-size: 48px;
   font-weight: bold;
-  margin-top: 40px;
-  color: #4caf50;
+  margin-top: 50px;
+  color: #d32f2f;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 }
 
 button.restart {
-  margin-top: 30px;
-  padding: 14px 32px;
-  font-size: 20px;
+  margin-top: 35px;
+  padding: 16px 36px;
+  font-size: 22px;
   background-color: #1976d2;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button.restart:hover {
   background-color: #1565c0;
-}
-
-.win-message {
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 40px;
-  color: #d32f2f;
-  text-shadow: 1px 1px 2px #000;
 }

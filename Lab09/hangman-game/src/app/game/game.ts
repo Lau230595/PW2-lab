@@ -37,8 +37,8 @@ export class GameComponent implements OnInit {
 
     const acierto = this.wordService.adivinarLetra(letter);
 
-    if (acierto) {
-      this.imageIndex++; // Cambia la imagen por cada acierto
+    if (!acierto) {
+      this.imageIndex++; // Cambia la imagen por cada error
     }
 
     if (this.wordService.isGanador()) {

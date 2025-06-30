@@ -18,14 +18,12 @@
     <button 
       *ngFor="let letter of alphabet"
       (click)="onGuess(letter)"
-      [disabled]="wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
+      [disabled]="juegoFinalizado || wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
       {{ letter }}
     </button>
   </div>
 
-  <div class="win-message">
-    {{ message }}
-  </div>
+  <div class="win-message">{{ message }}</div>
 
   <!-- Reiniciar -->
   <button class="restart" (click)="reiniciarJuego()">Reiniciar juego</button>

@@ -14,21 +14,33 @@ import { CommonModule } from '@angular/common';
 export class GameComponent implements OnInit {
   alphabet: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   message: string = '';
+  // Finaliza el juego cuando se te acaba los intentos
+  juegoFinalizado: boolean = false;
 
   constructor(public wordService: WordService) {}
 
+  iniciarJuego(): void {
+    this.wordService.iniciarNuevoJuego();
+    this.message = '';
+    this.juegoFinalizado = false;
+  }
+
   ngOnInit(): void {
     // Inicia el juego al cargar el componente
-    this.wordService.iniciarNuevoJuego();
+    this.iniciarJuego();
   }
 
   onGuess(letter: string): void {
+    if (this.juegoFinalizado) return; // Bloquear si ya terminó
+
     const acierto = this.wordService.adivinarLetra(letter);
 
     if (this.wordService.isGanador()) {
       this.message = '¡Ganaste!';
+      this.juegoFinalizado = true; // Marcar juego como terminado
     } else if (this.wordService.isPerdedor()) {
       this.message = `¡Perdiste! La palabra era: ${this.wordService.getPalabraSecreta()}`;
+      this.juegoFinalizado = true; // Marcar juego como terminado
     } else if (!acierto) {
       this.message = '¡Incorrecto!';
     } else {
@@ -37,7 +49,8 @@ export class GameComponent implements OnInit {
   }
 
   reiniciarJuego(): void {
-    this.wordService.iniciarNuevoJuego();
+    this.iniciarJuego();
     this.message = '';
+    this.juegoFinalizado = false;
   }
 }

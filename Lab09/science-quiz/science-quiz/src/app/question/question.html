@@ -1,9 +1,8 @@
-<div style="text-align: center;">
-  <h2>{{ question?.question }}</h2>
-
-  <div *ngFor="let option of question?.options">
-    <button (click)="selectAnswer(option)">
-      {{ option }}
-    </button>
-  </div>
+<div class="question-card">
+  <h2>{{ currentQuestion?.question }}</h2>
+  <ul>
+    <li *ngFor="let option of currentQuestion?.options">
+      <button (click)="checkAnswer(option)">{{ option }}</button>
+    </li>
+  </ul>
 </div>

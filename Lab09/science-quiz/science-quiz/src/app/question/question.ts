@@ -1,42 +1,41 @@
-import { Component } from '@angular/core';
-import { QuestionService } from './question-service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionService } from '../question-service';
 
 @Component({
   selector: 'app-question',
-  imports: [],
   templateUrl: './question.html',
-  styleUrl: './question.css'
+  styleUrls: ['./question.css']
 })
-export class Question {
-  question: any;
+export class QuestionComponent implements OnInit {
+  currentQuestion: any;
   currentIndex: number = 0;
   score: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private questionService: QuestionService
+    private qService: QuestionService
   ) {}
 
-  ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.currentIndex = id;
-    this.question = this.questionService.getQuestions()[id];
+  ngOnInit(): void {
+    this.currentIndex = +this.route.snapshot.paramMap.get('id')!;
+    this.currentQuestion = this.qService.getQuestions()[this.currentIndex];
   }
 
-  selectAnswer(option: string) {
-    if (option === this.question.correctAnswer) {
+  checkAnswer(option: string): void {
+    if (option === this.currentQuestion.correctAnswer) {
       this.score++;
     }
 
     const nextIndex = this.currentIndex + 1;
-    const questions = this.questionService.getQuestions();
+    const questions = this.qService.getQuestions();
 
     if (nextIndex < questions.length) {
       this.router.navigate(['/question', nextIndex]);
     } else {
       this.router.navigate(['/results'], {
-        queryParams: { score: this.score, total: questions.length }
+        state: { score: this.score }
       });
     }
   }

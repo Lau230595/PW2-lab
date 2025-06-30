@@ -1,61 +1,87 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #ffffff;
+  background: rgb(243, 250, 252);
   margin: 0;
-  padding: 0;
+  padding: 40px 20px;
   color: #333;
-}
-
-.container {
-  max-width: 1250px;
-  margin: 60px auto;
-  background-color: rgb(232, 247, 245);
-  padding: 60px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
   text-align: center;
 }
 
 h1 {
   font-family: 'Courier New', monospace;
-  font-size: 65px;
-  margin-bottom: 35px;
-  color: rgb(34, 119, 209);
+  font-size: 80px;
+  margin: 30px 0 10px;
+  color: rgb(0, 102, 204);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.figura {
+  font-family: monospace;
+  font-size: 20px;
+  white-space: pre;
+  color: #333;
+  margin: 20px 0 30px;
+  display: flex;
+  justify-content: center;   
+  align-items: center;
 }
 
 .word-display {
   font-size: 40px;
   letter-spacing: 20px;
   font-weight: bold;
-  margin: 45px 0;
+  margin: 30px 0;
   color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .remaining {
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: #388e3c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .wrong-letters {
   font-size: 22px;
   color: #d32f2f;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .letters-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; 
   gap: 18px;
-  margin-top: 35px;
+  margin-top: 20px;
+  max-width: 700px; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .letters-grid button {
-  width: 70px;
-  height: 70px;
-  font-size: 28px;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
   font-weight: bold;
   background-color: #90caf9;
   border: none;
@@ -67,6 +93,10 @@ h1 {
 .letters-grid button:hover {
   background-color: #64b5f6;
   transform: scale(1.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .letters-grid button:disabled {
@@ -76,18 +106,23 @@ h1 {
 }
 
 .win-message {
-  font-size: 48px;
+  font-size: 50px;
   font-weight: bold;
-  margin-top: 50px;
+  margin-top: 40px;
   color: #d32f2f;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 button.restart {
-  margin-top: 35px;
-  padding: 16px 36px;
+  margin: 30px auto 0; 
+  display: block;      
+  padding: 16px 40px;
   font-size: 22px;
-  background-color: #1976d2;
+  background-color:rgb(25, 210, 185);
   color: white;
   border: none;
   border-radius: 15px;
@@ -96,5 +131,9 @@ button.restart {
 }
 
 button.restart:hover {
-  background-color: #1565c0;
+  background-color:rgb(123, 181, 248);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }

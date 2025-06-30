@@ -1,30 +1,32 @@
-<div class="container">
-  <h1>Juego del Ahorcado</h1>
+<h1>Juego del Ahorcado</h1>
 
-  <div class="word-display">
-    {{ wordService.getPalabraConGuiones() }}
-  </div>
+<pre class="figura">
+{{ getFigura(wordService.getIntentosRestantes()) }}
+</pre>
 
-  <div class="remaining">
-    Intentos restantes: {{ wordService.getIntentosRestantes() }}
-  </div>
-
-  <div class="wrong-letters">
-    Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}
-  </div>
-
-  <!-- Botones del abecedario -->
-  <div class="letters-grid">
-    <button 
-      *ngFor="let letter of alphabet"
-      (click)="onGuess(letter)"
-      [disabled]="juegoFinalizado || wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
-      {{ letter }}
-    </button>
-  </div>
-
-  <div class="win-message">{{ message }}</div>
-
-  <!-- Reiniciar -->
-  <button class="restart" (click)="reiniciarJuego()">Reiniciar juego</button>
+<div class="word-display">
+  {{ wordService.getPalabraConGuiones() }}
 </div>
+
+<div class="remaining">
+  Intentos restantes: {{ wordService.getIntentosRestantes() }}
+</div>
+
+<div class="wrong-letters">
+  Letras equivocadas: {{ wordService.getLetrasIncorrectas().join(', ') }}
+</div>
+
+<!-- Botones del abecedario -->
+<div class="letters-grid">
+  <button 
+    *ngFor="let letter of alphabet"
+    (click)="onGuess(letter)"
+    [disabled]="juegoFinalizado || wordService.getLetrasIncorrectas().includes(letter) || wordService.getPalabraConGuiones().includes(letter)">
+    {{ letter }}
+  </button>
+</div>
+
+<div class="win-message">{{ message }}</div>
+
+<!-- Reiniciar -->
+<button class="restart" (click)="reiniciarJuego()">Reiniciar juego</button>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WordService } from '../word';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-game',
   standalone: true,
@@ -10,37 +9,44 @@ import { CommonModule } from '@angular/common';
   templateUrl: './game.html',
   styleUrls: ['./game.css']
 })
-
 export class GameComponent implements OnInit {
   alphabet: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   message: string = '';
-  // Finaliza el juego cuando se te acaba los intentos
   juegoFinalizado: boolean = false;
+  imageIndex: number = 0; // Para controlar la imagen del ahorcado
 
   constructor(public wordService: WordService) {}
+
+  ngOnInit(): void {
+    this.iniciarJuego();
+  }
 
   iniciarJuego(): void {
     this.wordService.iniciarNuevoJuego();
     this.message = '';
     this.juegoFinalizado = false;
+    this.imageIndex = 0; // Reiniciar imagen
   }
 
-  ngOnInit(): void {
-    // Inicia el juego al cargar el componente
-    this.iniciarJuego();
+  get imagenAhorcado(): string {
+    return `assets/images/hangman${this.imageIndex}.png`;
   }
 
   onGuess(letter: string): void {
-    if (this.juegoFinalizado) return; // Bloquear si ya terminó
+    if (this.juegoFinalizado) return;
 
     const acierto = this.wordService.adivinarLetra(letter);
 
+    if (acierto) {
+      this.imageIndex++; // Cambia la imagen por cada acierto
+    }
+
     if (this.wordService.isGanador()) {
       this.message = '¡Ganaste!';
-      this.juegoFinalizado = true; // Marcar juego como terminado
+      this.juegoFinalizado = true;
     } else if (this.wordService.isPerdedor()) {
       this.message = `¡Perdiste! La palabra era: ${this.wordService.getPalabraSecreta()}`;
-      this.juegoFinalizado = true; // Marcar juego como terminado
+      this.juegoFinalizado = true;
     } else if (!acierto) {
       this.message = '¡Incorrecto!';
     } else {
@@ -50,8 +56,6 @@ export class GameComponent implements OnInit {
 
   reiniciarJuego(): void {
     this.iniciarJuego();
-    this.message = '';
-    this.juegoFinalizado = false;
   }
 
   getFigura(intentos: number): string {

@@ -131,9 +131,21 @@ button.restart {
 }
 
 button.restart:hover {
+<<<<<<< HEAD
   background-color:rgb(123, 181, 248);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
+=======
+  background-color: #1565c0;
+}
+
+.imagen-ahorcado img {
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  opacity: 0.85;
+}
+>>>>>>> 4c5fd24 (modificacion de imagen final y juego final)

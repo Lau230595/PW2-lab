@@ -1,13 +1,98 @@
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  font-size: 16px;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-h2 {
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: #1976d2;
+}
+
+.word-display {
+  font-size: 36px;
+  letter-spacing: 18px;
+  font-weight: bold;
+  margin: 40px 0;
+  color: #000;
+}
+
+.remaining {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
+  color: #388e3c;
 }
 
-p {
+.wrong-letters {
+  font-size: 20px;
+  color: #d32f2f;
+  margin-bottom: 30px;
+}
+
+.letters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.letters-grid button {
+  width: 50px;
+  height: 50px;
   font-size: 18px;
+  font-weight: bold;
+  background-color: #90caf9;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.letters-grid button:hover {
+  background-color: #64b5f6;
+  transform: scale(1.05);
+}
+
+.letters-grid button:disabled {
+  background-color: #cfd8dc;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.win-message {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 40px;
+  color: #4caf50;
+}
+
+button.restart {
+  margin-top: 30px;
+  padding: 14px 32px;
+  font-size: 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.restart:hover {
+  background-color: #1565c0;
 }

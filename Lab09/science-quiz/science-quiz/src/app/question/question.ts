@@ -13,7 +13,6 @@ import { QuestionService } from '../question-service';
 export class QuestionComponent implements OnInit {
   currentQuestion: any;
   currentIndex: number = 0;
-  score: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,14 +20,16 @@ export class QuestionComponent implements OnInit {
     private qService: QuestionService
   ) {}
 
-  ngOnInit(): void {
-    this.currentIndex = +this.route.snapshot.paramMap.get('id')!;
+ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    this.currentIndex = +params.get('id')!;
     this.currentQuestion = this.qService.getQuestions()[this.currentIndex];
-  }
+  });
+}
 
   checkAnswer(option: string): void {
     if (option === this.currentQuestion.correctAnswer) {
-      this.score++;
+      this.qService.incrementScore();
     }
 
     const nextIndex = this.currentIndex + 1;
@@ -38,8 +39,9 @@ export class QuestionComponent implements OnInit {
       this.router.navigate(['/question', nextIndex]);
     } else {
       this.router.navigate(['/results'], {
-        state: { score: this.score }
+        state: { score: this.qService.score }
       });
+      this.qService.resetScore();
     }
   }
 }

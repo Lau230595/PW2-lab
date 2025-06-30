@@ -1,16 +1,28 @@
-.results-container {
+.card {
+  padding: 30px;
+  max-width: 500px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   text-align: center;
-  margin-top: 80px;
-  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
 button {
-  background-color: #336699;
+  padding: 10px 20px;
+  background-color: #4CAF50;
   color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
   font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #388e3c;
 }

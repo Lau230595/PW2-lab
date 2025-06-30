@@ -17,8 +17,16 @@ export class QuestionService {
     { question: '¿Qué órgano filtra la sangre y elimina desechos?', options: ['Riñón', 'Hígado', 'Pulmón'], correctAnswer: 'Riñón' },
     { question: '¿Quién descubrió la ley de la gravitación universal?', options: ['Einstein', 'Newton', 'Galileo'], correctAnswer: 'Newton' }
   ];
+  public score = 0;
 
   getQuestions() {
     return this.questions;
+  }
+  resetScore() {
+    this.score = 0;
+  }
+
+  incrementScore() {
+    this.score++;
   }
 }

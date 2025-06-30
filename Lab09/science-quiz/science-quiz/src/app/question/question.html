@@ -1,8 +1,12 @@
-<div class="question-card">
+<div class="card">
   <h2>{{ currentQuestion?.question }}</h2>
-  <ul>
-    <li *ngFor="let option of currentQuestion?.options">
-      <button (click)="checkAnswer(option)">{{ option }}</button>
-    </li>
-  </ul>
+
+  <div class="options">
+    <button 
+      *ngFor="let option of currentQuestion?.options" 
+      (click)="checkAnswer(option)">
+      {{ option }}
+    </button>
+  </div>
 </div>
+

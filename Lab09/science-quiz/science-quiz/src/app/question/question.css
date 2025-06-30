@@ -1,29 +1,30 @@
-.question-card {
-  max-width: 600px;
-  margin: 40px auto;
+.card {
   padding: 20px;
-  border: 2px solid #ccc;
+  background: #f0f0f0;
   border-radius: 10px;
-  background: #f9f9f9;
+  max-width: 600px;
+  margin: auto;
 }
 
 h2 {
-  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-button {
+.options button {
   display: block;
   width: 100%;
-  margin: 10px 0;
   padding: 10px;
-  font-size: 16px;
+  margin-bottom: 10px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.options button:hover {
+  background-color: #388e3c;
 }

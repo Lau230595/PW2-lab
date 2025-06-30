@@ -1,3 +1,5 @@
-<h1>¡Juego terminado!</h1>
-<p>Tu puntaje final es: {{ score }}</p>
-<button routerLink="/">Volver al inicio</button>
+<div class="results-container">
+  <h1>¡Juego terminado!</h1>
+  <p>Tu puntaje final es: <strong>{{ score }}</strong></p>
+  <button (click)="restart()">Volver al inicio</button>
+</div>
